@@ -172,21 +172,5 @@ GitHub: <a href="https://github.com/m-agour/ResPlan">https://github.com/m-agour/
 </code>
 </pre>
 
-<h3>🏛️ Vastu Shastra</h3>
-<p>Vastu rules used from traditional Indian architectural guidelines.</p>
 
-<hr/>
 
-<h2>🗺️ Roadmap</h2>
-<ul>
-  <li>✔️ Floor plan generation</li>
-  <li>✔️ Vastu compliance</li>
-  <li>✔️ Web interface</li>
-  <li>✔️ Graph analysis</li>
-  <li>🔄 3D visualization (in progress)</li>
-  <li>📋 Furniture placement</li>
-  <li>📋 Cost estimation</li>
-  <li>📋 Mobile app version</li>
-</ul>
-
-<hr/>
