@@ -1,511 +1,192 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Floor Plan Generator with Vastu Shastra</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #24292e;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background: #ffffff;
-        }
-        h1 {
-            border-bottom: 3px solid #0366d6;
-            padding-bottom: 10px;
-            color: #0366d6;
-        }
-        h2 {
-            border-bottom: 2px solid #e1e4e8;
-            padding-bottom: 8px;
-            margin-top: 30px;
-            color: #24292e;
-        }
-        h3 {
-            color: #0366d6;
-            margin-top: 20px;
-        }
-        .badge {
-            display: inline-block;
-            padding: 4px 8px;
-            margin: 2px;
-            border-radius: 3px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-        .badge-python {
-            background: #3776ab;
-            color: white;
-        }
-        .badge-gradio {
-            background: #ffd4a3;
-            color: #333;
-        }
-        .badge-vastu {
-            background: #ffe4b3;
-            color: #333;
-        }
-        .badge-colab {
-            background: #fff9b3;
-            color: #333;
-        }
-        .badge-huggingface {
-            background: #ffc9d4;
-            color: #333;
-        }
-        code {
-            background: #f6f8fa;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-        }
-        pre {
-            background: #f6f8fa;
-            padding: 16px;
-            border-radius: 6px;
-            overflow-x: auto;
-            border: 1px solid #e1e4e8;
-        }
-        pre code {
-            background: none;
-            padding: 0;
-        }
-        .demo-box {
-            background: #fef5e7;
-            color: #333;
-            padding: 25px;
-            border-radius: 8px;
-            text-align: center;
-            margin: 25px 0;
-            border: 2px solid #f9e79f;
-        }
-        .demo-box a {
-            color: #e67e22;
-            font-size: 18px;
-            font-weight: 600;
-            text-decoration: none;
-            background: white;
-            border: 2px solid #e67e22;
-            padding: 12px 24px;
-            border-radius: 6px;
-            display: inline-block;
-            margin-top: 12px;
-            transition: all 0.3s ease;
-        }
-        .demo-box a:hover {
-            background: #e67e22;
-            color: white;
-        }
-        .highlight {
-            background: #fff3cd;
-            padding: 15px;
-            border-left: 4px solid #ffc107;
-            margin: 15px 0;
-        }
-        .credit-box {
-            background: #e7f3ff;
-            padding: 15px;
-            border-left: 4px solid #0366d6;
-            margin: 15px 0;
-        }
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        .feature-card {
-            border: 1px solid #e1e4e8;
-            border-radius: 6px;
-            padding: 15px;
-            background: #f6f8fa;
-        }
-        .feature-card h4 {
-            margin-top: 0;
-            color: #0366d6;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        th, td {
-            border: 1px solid #e1e4e8;
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background: #f6f8fa;
-            font-weight: 600;
-        }
-        .emoji {
-            font-size: 1.2em;
-        }
-        a {
-            color: #0366d6;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .file-structure {
-            background: #f6f8fa;
-            padding: 15px;
-            border-radius: 6px;
-            border: 1px solid #e1e4e8;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-        }
-        .component-box {
-            border: 2px solid #0366d6;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
-            background: #f8f9fa;
-        }
-        .component-box h3 {
-            margin-top: 0;
-            color: #0366d6;
-        }
-    </style>
-</head>
-<body>
-
-<h1><span class="emoji">🏠</span> AI Floor Plan Generator with Vastu Shastra</h1>
+<h1>🏠 AI Floor Plan Generator with Vastu Shastra</h1>
 
 <p>
-    <span class="badge badge-python">Python 3.8+</span>
-    <span class="badge badge-gradio">Gradio</span>
-    <span class="badge badge-vastu">Vastu Compliant</span>
-    <span class="badge badge-colab">Google Colab</span>
-    <span class="badge badge-huggingface">Hugging Face</span>
+  <img src="https://img.shields.io/badge/Python-3.8%2B-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Gradio-App-FEAA3A?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Vastu-Compliant-FFC107?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Colab-Notebook-F9AB00?style=for-the-badge&logo=googlecolab&logoColor=white"/>
+  <img src="https://img.shields.io/badge/HuggingFace-Space-FCC72C?style=for-the-badge&logo=huggingface"/>
 </p>
 
-<div class="demo-box">
-    <h2 style="margin-top: 0;">Try the Live Demo</h2>
-    <p>Experience the floor plan generator in action</p>
-    <a href="https://huggingface.co/spaces/itsmedi/floor_plan_generator" target="_blank">
-        Launch Demo
-    </a>
-</div>
+<hr/>
 
-<h2><span class="emoji">📖</span> Overview</h2>
-
+<h2>🚀 Live Demo</h2>
 <p>
-This floor plan generation system creates customized 2D residential layouts based on your specific requirements. 
-Built on the ResPlan dataset of 17,107 floor plans, it can apply traditional Vastu Shastra 
-principles to align your space with ancient architectural wisdom.
+  Try the full web app here:<br/>
+  <a href="https://huggingface.co/spaces/itsmedi/floor_plan_generator"><b>👉 Launch on Hugging Face</b></a>
 </p>
 
-<p>The repository includes:</p>
+<hr/>
 
+<h2>📖 Overview</h2>
+<p>
+This system generates <b>custom 2D residential floor plans</b> using the <b>ResPlan dataset (17,107 plans)</b>.
+It also applies <b>Vastu Shastra</b> rules to optimize layout and orientation.
+</p>
+
+<p>The repository contains:</p>
 <ul>
-    <li><strong>app.py</strong> - Web application with interactive interface (live on Hugging Face)</li>
-    <li><strong>floor_plan_gen.ipynb</strong> - Research notebook for exploration and testing (works on Google Colab)</li>
+  <li><b>app.py</b> – Gradio-based web app (live on Hugging Face)</li>
+  <li><b>floor_plan_gen.ipynb</b> – Google Colab research and analysis notebook</li>
 </ul>
 
-<h2><span class="emoji">🎯</span> Repository Components</h2>
+<hr/>
 
-<div class="component-box">
-    <h3><span class="emoji">🌐</span> app.py - Web Application</h3>
-    <p><strong>What it does:</strong> A ready-to-use web interface where you can generate floor plans through your browser</p>
-    <p><strong>Features:</strong></p>
-    <ul>
-        <li>Easy-to-use interface with sliders and checkboxes</li>
-        <li>Generates floor plans in real-time</li>
-        <li>Toggle Vastu Shastra compliance on/off</li>
-        <li>Clear 2D visualization with labeled rooms</li>
-        <li>Shows detailed information about each plan</li>
-    </ul>
-    <p><strong>Where to find it:</strong> Running live at 
-    <a href="https://huggingface.co/spaces/itsmedi/floor_plan_generator" target="_blank">itsmedi/floor_plan_generator</a></p>
-</div>
+<h2>🎯 Repository Components</h2>
 
-<div class="component-box">
-    <h3><span class="emoji">📓</span> floor_plan_gen.ipynb - Research Notebook</h3>
-    <p><strong>What it does:</strong> A notebook for experimenting with the dataset and testing different approaches</p>
-    <p><strong>Features:</strong></p>
-    <ul>
-        <li>Explore the full dataset of 17,107 floor plans</li>
-        <li>Test geometric transformations (rotate, flip, scale)</li>
-        <li>Experiment with buffer operations for cleaning geometries</li>
-        <li>Analyze room connectivity through graphs</li>
-        <li>Test and refine Vastu compliance algorithms</li>
-        <li>Create custom visualizations</li>
-    </ul>
-    <p><strong>Best for:</strong> Google Colab with Google Drive integration</p>
-    
-    <p><strong>What's inside:</strong></p>
-    <ol>
-        <li>Loading the dataset from Google Drive</li>
-        <li>Exploring floor plan statistics</li>
-        <li>Testing geometric transformations</li>
-        <li>Cleaning geometries with buffer operations</li>
-        <li>Building and analyzing connectivity graphs</li>
-        <li>Implementing Vastu principles</li>
-        <li>Creating professional visualizations</li>
-    </ol>
-</div>
-
-<h2><span class="emoji">✨</span> Features</h2>
-
-<div class="feature-grid">
-    <div class="feature-card">
-        <h4><span class="emoji">🔍</span> Intelligent Search</h4>
-        <p>Index-based filtering by bedrooms, bathrooms, area range, and kitchen presence</p>
-    </div>
-    <div class="feature-card">
-        <h4><span class="emoji">🕉️</span> Vastu Shastra</h4>
-        <p>Automatic orientation optimization based on ancient Indian architectural principles with scoring</p>
-    </div>
-    <div class="feature-card">
-        <h4><span class="emoji">🎨</span> Professional Visualization</h4>
-        <p>High-quality 2D floor plans with color-coded rooms, icons, dimensions, and labels</p>
-    </div>
-    <div class="feature-card">
-        <h4><span class="emoji">📊</span> Graph Analysis</h4>
-        <p>Room connectivity graphs showing spatial relationships and adjacency</p>
-    </div>
-</div>
-
-
-
-<h2><span class="emoji">📊</span> Dataset Information</h2>
-
-<table>
-    <tr>
-        <th>Metric</th>
-        <th>Value</th>
-    </tr>
-    <tr>
-        <td><strong>Total Floor Plans</strong></td>
-        <td>17,107</td>
-    </tr>
-    <tr>
-        <td><strong>Bedroom Range</strong></td>
-        <td>0-6 bedrooms</td>
-    </tr>
-    <tr>
-        <td><strong>Bathroom Range</strong></td>
-        <td>1-4 bathrooms</td>
-    </tr>
-    <tr>
-        <td><strong>Area Range</strong></td>
-        <td>0.09 - 712.94 square units</td>
-    </tr>
-    <tr>
-        <td><strong>Plans with Kitchen</strong></td>
-        <td>99.5%</td>
-    </tr>
-    <tr>
-        <td><strong>Data Format</strong></td>
-        <td>Vector-based geometry (Shapely)</td>
-    </tr>
-</table>
-
-
-
-
-
-<h2><span class="emoji">💡</span> How It Works</h2>
-
-<h3>Finding the Right Floor Plan</h3>
-<p>The system uses smart indexing to quickly search through thousands of floor plans:</p>
+<h3>🌐 <code>app.py</code> — Web Application</h3>
 <ul>
-    <li><strong>Bedroom Index:</strong> Organized by number of bedrooms for instant filtering</li>
-    <li><strong>Bathroom Index:</strong> Grouped by bathroom count</li>
-    <li><strong>Area Index:</strong> Sorted by size for range searches</li>
+  <li>Interactive UI with sliders/toggles</li>
+  <li>Generates plans in real-time</li>
+  <li>Optional Vastu optimization</li>
+  <li>Labeled 2D visualizations</li>
+</ul>
+<p>Live here: <a href="https://huggingface.co/spaces/itsmedi/floor_plan_generator">itsmedi/floor_plan_generator</a></p>
+
+<h3>📓 <code>floor_plan_gen.ipynb</code> — Research Notebook</h3>
+<ul>
+  <li>Dataset exploration</li>
+  <li>Geometric transforms (rotate, flip, scale)</li>
+  <li>Buffer operations for cleaning geometry</li>
+  <li>Room connectivity graphs</li>
+  <li>Vastu scoring & optimization</li>
+  <li>Custom visualizations</li>
 </ul>
 
-<h3>Applying Vastu Principles</h3>
-<p>When you enable Vastu optimization, here's what happens:</p>
+<hr/>
+
+<h2>✨ Features</h2>
 <ul>
-    <li>The system identifies where each room is located</li>
-    <li>Calculates which direction each room faces (North, East, South, West, and corners)</li>
-    <li>Tests different rotations of the entire floor plan</li>
-    <li>Scores each rotation based on how well rooms align with traditional guidelines</li>
-    <li>Applies the best rotation to your floor plan</li>
+  <li>🔍 Intelligent Search & Filters</li>
+  <li>🕉️ Vastu Shastra-Based Orientation Optimization</li>
+  <li>🎨 Professional 2D Visualization</li>
+  <li>📊 Graph Analysis of Room Connectivity</li>
 </ul>
 
-<table>
-    <tr>
-        <th>Direction</th>
-        <th>Zone</th>
-        <th>Ideal Placement</th>
-    </tr>
-    <tr>
-        <td><strong>North-East</strong></td>
-        <td>Ishaan (Water)</td>
-        <td>Entrance, Living room, Prayer room</td>
-    </tr>
-    <tr>
-        <td><strong>South-East</strong></td>
-        <td>Agni (Fire)</td>
-        <td>Kitchen, Electrical appliances</td>
-    </tr>
-    <tr>
-        <td><strong>South-West</strong></td>
-        <td>Nairutya (Earth)</td>
-        <td>Master bedroom, Heavy storage</td>
-    </tr>
-    <tr>
-        <td><strong>North-West</strong></td>
-        <td>Vayavya (Air)</td>
-        <td>Guest room, Bathroom</td>
-    </tr>
-    <tr>
-        <td><strong>North</strong></td>
-        <td>Kubera (Wealth)</td>
-        <td>Living room, Cash/valuables</td>
-    </tr>
-    <tr>
-        <td><strong>East</strong></td>
-        <td>Indra (Sun)</td>
-        <td>Main entrance (most auspicious)</td>
-    </tr>
-</table>
+<hr/>
 
-<h3>Creating the Visualization</h3>
-<p>Floor plans are drawn in layers:</p>
-<ol>
-    <li><strong>Room Floors:</strong> Each room type gets its own color</li>
-    <li><strong>Walls:</strong> Black lines showing boundaries</li>
-    <li><strong>Doors:</strong> Brown circles marking entrances</li>
-    <li><strong>Windows:</strong> Blue squares for natural light</li>
-    <li><strong>Labels:</strong> Room names with icons so you can tell them apart</li>
-    <li><strong>Dimensions:</strong> Size measurements where helpful</li>
-    <li><strong>Legend:</strong> A key explaining all the colors and symbols</li>
-</ol>
-
-<h2><span class="emoji">🎨</span> Example Output</h2>
-
-<p>The system generates floor plans with:</p>
+<h2>📊 Dataset Information</h2>
 
 <table>
-    <tr>
-        <th>Element</th>
-        <th>Visual Style</th>
-        <th>Color</th>
-    </tr>
-    <tr>
-        <td><span class="emoji">🛋️</span> Living Room</td>
-        <td>Filled polygon</td>
-        <td>#FFFACD (Lemon Chiffon)</td>
-    </tr>
-    <tr>
-        <td><span class="emoji">🛏️</span> Bedroom</td>
-        <td>Filled polygon</td>
-        <td>#E6F3E6 (Light Green)</td>
-    </tr>
-    <tr>
-        <td><span class="emoji">🍳</span> Kitchen</td>
-        <td>Filled polygon</td>
-        <td>#FFE6E6 (Light Pink)</td>
-    </tr>
-    <tr>
-        <td><span class="emoji">🚿</span> Bathroom</td>
-        <td>Filled polygon</td>
-        <td>#E6F2FF (Light Blue)</td>
-    </tr>
-    <tr>
-        <td><span class="emoji">🌿</span> Balcony</td>
-        <td>Filled polygon</td>
-        <td>#F5F5DC (Beige)</td>
-    </tr>
-    <tr>
-        <td><span class="emoji">🚪</span> Doors</td>
-        <td>Circle marker</td>
-        <td>#8B4513 (Brown)</td>
-    </tr>
-    <tr>
-        <td><span class="emoji">🪟</span> Windows</td>
-        <td>Rectangle marker</td>
-        <td>#4169E1 (Royal Blue)</td>
-    </tr>
-    <tr>
-        <td>Walls</td>
-        <td>Thick lines</td>
-        <td>#1A1A1A (Near Black)</td>
-    </tr>
+  <tr><th>Metric</th><th>Value</th></tr>
+  <tr><td>Total Floor Plans</td><td>17,107</td></tr>
+  <tr><td>Bedrooms</td><td>0–6</td></tr>
+  <tr><td>Bathrooms</td><td>1–4</td></tr>
+  <tr><td>Area Range</td><td>0.09–712.94 units</td></tr>
+  <tr><td>Kitchens</td><td>99.5%</td></tr>
+  <tr><td>Format</td><td>Vector Geometry (Shapely)</td></tr>
 </table>
 
-<h2><span class="emoji">🔬</span> Advanced Features in Notebook</h2>
+<hr/>
 
-<h3>Geometric Augmentation</h3>
-<pre><code># Rotate, flip, and scale floor plans
-aug_plan = augment_geom(
-    plan,
-    degree=45,         # Rotation angle
-    flip_vertical=True, # Mirror flip
-    scale=0.9          # Scale factor
-)</code></pre>
+<h2>💡 How It Works</h2>
+
+<h3>1️⃣ Index-Based Search</h3>
+<ul>
+  <li>Bedroom filtering</li>
+  <li>Bathroom filtering</li>
+  <li>Area range search</li>
+</ul>
+
+<h3>2️⃣ Vastu Optimization</h3>
+<ul>
+  <li>Detects room directions</li>
+  <li>Rotates plan to test all 4 orientations</li>
+  <li>Scores each orientation based on Vastu principles</li>
+  <li>Applies best-scoring rotation</li>
+</ul>
+
+<h3>3️⃣ Visualization Layers</h3>
+<ul>
+  <li>Room polygons (colored)</li>
+  <li>Walls, doors, windows</li>
+  <li>Room labels + icons</li>
+  <li>Dimensions</li>
+  <li>Legend</li>
+</ul>
+
+<hr/>
+
+<h2>🎨 Example Output Style</h2>
+
+<table>
+  <tr><th>Element</th><th>Style</th><th>Color</th></tr>
+  <tr><td>Living Room</td><td>Polygon</td><td>Lemon Chiffon</td></tr>
+  <tr><td>Bedroom</td><td>Polygon</td><td>Light Green</td></tr>
+  <tr><td>Kitchen</td><td>Polygon</td><td>Light Pink</td></tr>
+  <tr><td>Bathroom</td><td>Polygon</td><td>Light Blue</td></tr>
+  <tr><td>Balcony</td><td>Polygon</td><td>Beige</td></tr>
+  <tr><td>Doors</td><td>Circle</td><td>Brown</td></tr>
+  <tr><td>Windows</td><td>Rectangle</td><td>Royal Blue</td></tr>
+  <tr><td>Walls</td><td>Thick Lines</td><td>Black</td></tr>
+</table>
+
+<hr/>
+
+<h2>🔬 Advanced Notebook Features</h2>
+
+<h3>Geometry Augmentation</h3>
+<pre>
+<code>
+aug_plan = augment_geom(plan, degree=45, flip_vertical=True, scale=0.9)
+</code>
+</pre>
 
 <h3>Buffer Operations</h3>
-<pre><code># Clean geometry (remove noise)
+<pre>
+<code>
 cleaned = buffer_shrink_expand(plan['living'], wall_width/2)
+filled  = buffer_expand_shrink(plan['living'], wall_width/2)
+</code>
+</pre>
 
-# Fill gaps (close small openings)
-filled = buffer_expand_shrink(plan['living'], wall_width/2)</code></pre>
-
-<h3>Graph Analysis</h3>
-<pre><code># Generate room connectivity graph
+<h3>Connectivity Graph</h3>
+<pre>
+<code>
 G = plan_to_graph(plan)
-print(f'Nodes: {G.number_of_nodes()}')
-print(f'Edges: {G.number_of_edges()}')
+print(G.number_of_nodes(), G.number_of_edges())
+plot_plan_and_graph(plan)
+</code>
+</pre>
 
-# Visualize with graph overlay
-plot_plan_and_graph(plan, title='Floor Plan with Connectivity')</code></pre>
+<hr/>
 
-<h2><span class="emoji">🙏</span> Credits & Acknowledgments</h2>
+<h2>🙏 Credits & Acknowledgments</h2>
 
-<div class="credit-box">
-    <h3><span class="emoji">📚</span> Dataset Source</h3>
-    <p><strong>ResPlan: A Large-Scale Vector-Graph Dataset of 17,000 Residential Floor Plans</strong></p>
-    <p><strong>Authors:</strong> Mohamed Abouagour, Eleftherios Garyfallidis</p>
-    <p><strong>Repository:</strong> <a href="https://github.com/m-agour/ResPlan" target="_blank">https://github.com/m-agour/ResPlan</a></p>
-    <p><strong>Dataset:</strong> <a href="https://github.com/m-agour/ResPlan/blob/main/ResPlan.zip" target="_blank">Download ResPlan.zip</a></p>
-    
-    <p><strong>Citation:</strong></p>
-    <pre><code>@article{resplan2024,
+<h3>📚 ResPlan Dataset</h3>
+<p>
+<b>ResPlan: A Large-Scale Vector-Graph Dataset of Residential Floor Plans</b><br/>
+Authors: Mohamed Abouagour, Eleftherios Garyfallidis<br/>
+GitHub: <a href="https://github.com/m-agour/ResPlan">https://github.com/m-agour/ResPlan</a>
+</p>
+
+<pre>
+<code>
+@article{resplan2024,
   title={ResPlan: A Large-Scale Vector-Graph Dataset of Residential Floor Plans},
   author={Abouagour, Mohamed and Garyfallidis, Eleftherios},
   year={2024},
   publisher={GitHub},
   howpublished={\url{https://github.com/m-agour/ResPlan}}
-}</code></pre>
-</div>
+}
+</code>
+</pre>
 
-<div class="credit-box">
-    <h3><span class="emoji">🏛️</span> Vastu Shastra Knowledge</h3>
-    <p>Vastu principles implemented based on traditional Indian architectural guidelines and sacred geometry.</p>
-</div>
+<h3>🏛️ Vastu Shastra</h3>
+<p>Vastu rules used from traditional Indian architectural guidelines.</p>
 
+<hr/>
 
-
-
-
-
-
-<h2><span class="emoji">🗺️</span> What's Next</h2>
-
+<h2>🗺️ Roadmap</h2>
 <ul>
-    <li>✅ Basic floor plan generation</li>
-    <li>✅ Vastu Shastra compliance</li>
-    <li>✅ Web interface</li>
-    <li>✅ Room connectivity graphs</li>
-    <li>🔄 Working on 3D visualization</li>
-    <li>📋 Planning furniture placement</li>
-    <li>📋 Cost estimation tools</li>
-    <li>📋 Mobile version</li>
+  <li>✔️ Floor plan generation</li>
+  <li>✔️ Vastu compliance</li>
+  <li>✔️ Web interface</li>
+  <li>✔️ Graph analysis</li>
+  <li>🔄 3D visualization (in progress)</li>
+  <li>📋 Furniture placement</li>
+  <li>📋 Cost estimation</li>
+  <li>📋 Mobile app version</li>
 </ul>
 
-<hr>
-
-
-</body>
-</html>
+<hr/>
