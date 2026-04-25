@@ -13,7 +13,7 @@
 <h2>🚀 Live Demo</h2>
 <p>
   Try the full web app here:<br/>
-  <a href="https://huggingface.co/spaces/itsmedi/floor_plan_generator"><b>👉 Launch on Hugging Face</b></a>
+  <a href="https://huggingface.co/spaces/itsmedi/floorplangenerator-mul-images"><b>👉 Launch on Hugging Face</b></a>
 </p>
 
 <hr/>
